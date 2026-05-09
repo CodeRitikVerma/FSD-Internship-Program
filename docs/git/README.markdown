@@ -11,27 +11,62 @@ Think of Git like a **save game system** for coding projects.
 
 ---
 
-# 1. Check if Git is Installed
+# 1. Install Git
 
-Open Terminal and type:
+## Windows
+
+1. Go to: https://git-scm.com/downloads
+2. Download Git for Windows
+3. Run the installer
+4. Keep clicking **Next**
+5. Finish installation
+
+After installation, open:
+- Git Bash
+- Command Prompt
+- VS Code Terminal
+
+Check installation:
 
 ```bash
 git --version
 ```
 
-You may also see:
+Example output:
 
 ```bash
-g --version
+git version 2.49.0
 ```
 
-### Why do both work?
-Because `g` is usually an alias (shortcut) for `git`.
+---
 
-Example:
+## Linux (Ubuntu/Debian)
 
 ```bash
-alias g='git'
+sudo apt update
+sudo apt install git
+```
+
+Check installation:
+
+```bash
+git --version
+```
+
+---
+
+## macOS
+
+Install using Homebrew:
+
+```bash
+brew install git
+```
+
+Check installation:
+
+```bash
+git --version
 ```
 
 ---
@@ -94,11 +129,11 @@ Now this folder is a Git repository.
 git status
 ```
 
-Shortcut:
-
-```bash
-g st
-```
+This command shows:
+- New files
+- Modified files
+- Deleted files
+- Files ready to commit
 
 ---
 
@@ -127,6 +162,12 @@ git add abc.txt
 
 Now Git is ready to save this file.
 
+To add all files:
+
+```bash
+git add .
+```
+
 ---
 
 # 7. Make Your First Commit
@@ -135,12 +176,6 @@ A commit = snapshot/save point.
 
 ```bash
 git commit -m "My first commit"
-```
-
-Shortcut:
-
-```bash
-g ci -m "My first commit"
 ```
 
 ---
@@ -152,10 +187,10 @@ git log
 ```
 
 You will see:
-- commit ID
-- author
-- date
-- message
+- Commit ID
+- Author
+- Date
+- Commit message
 
 ---
 
@@ -183,22 +218,10 @@ Branches let you work separately without affecting main code.
 git branch feature-1
 ```
 
-Shortcut:
-
-```bash
-g br feature-1
-```
-
 ## Switch Branch
 
 ```bash
 git checkout feature-1
-```
-
-Shortcut:
-
-```bash
-g co feature-1
 ```
 
 ---
@@ -264,8 +287,8 @@ git cherry-pick <commit-id>
 ```
 
 Useful when:
-- you want only one change
-- not the whole branch
+- You want only one change
+- Not the whole branch
 
 ---
 
@@ -280,7 +303,7 @@ git clone <repository-url>
 Example:
 
 ```bash
-git clone git@github.com:username/project.git
+git clone https://github.com/username/project.git
 ```
 
 ---
@@ -305,22 +328,31 @@ Uploads your commits to GitHub.
 
 ---
 
-# 18. GitHub Personal Access Token (PAT)
+# 18. Create GitHub Account
 
-GitHub no longer allows password authentication in many cases.
+1. Go to https://github.com
+2. Click **Sign Up**
+3. Create your account
+4. Verify your email
+
+---
+
+# 19. GitHub Personal Access Token (PAT)
+
+GitHub may ask for a token instead of password.
 
 Steps:
 1. Go to GitHub Settings
 2. Developer Settings
 3. Personal Access Tokens
-4. Generate Token
+4. Generate New Token
 5. Copy token safely
 
 Use it when Git asks for password.
 
 ---
 
-# 19. SSH Key Setup (Recommended)
+# 20. SSH Key Setup (Recommended)
 
 SSH allows password-free GitHub access.
 
@@ -330,6 +362,8 @@ SSH allows password-free GitHub access.
 ssh-keygen
 ```
 
+Press Enter multiple times.
+
 ## Copy Public Key
 
 ```bash
@@ -338,21 +372,21 @@ cat ~/.ssh/id_rsa.pub
 
 ## Add Key to GitHub
 
-GitHub → Settings → SSH and GPG Keys → New SSH Key
+1. Open GitHub
+2. Go to Settings
+3. SSH and GPG Keys
+4. Click New SSH Key
+5. Paste copied key
 
-Paste the copied key.
-
-Now:
+Now this works without password:
 
 ```bash
 git pull
 ```
 
-works without password.
-
 ---
 
-# 20. Reset Changes
+# 21. Reset Changes
 
 ## Remove All Local Changes
 
@@ -365,12 +399,12 @@ This deletes uncommitted changes.
 
 ---
 
-# 21. Interactive Rebase (Advanced)
+# 22. Interactive Rebase (Advanced)
 
 Used to:
-- edit commits
-- remove commits
-- rename commits
+- Edit commits
+- Remove commits
+- Rename commits
 
 Example:
 
@@ -382,7 +416,7 @@ This opens editor for last 3 commits.
 
 ---
 
-# 22. Most Common Git Commands
+# 23. Most Common Git Commands
 
 | Task | Command |
 |---|---|
@@ -390,6 +424,7 @@ This opens editor for last 3 commits.
 | Initialize repo | `git init` |
 | Check status | `git status` |
 | Add file | `git add file.txt` |
+| Add all files | `git add .` |
 | Commit | `git commit -m "message"` |
 | View history | `git log` |
 | Create branch | `git branch branch-name` |
