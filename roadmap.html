@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>30 Days · Full Stack Developer Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #f5f1e8;
+    --cream-deep: #ede7d6;
+    --ink: #1a1814;
+    --ink-soft: #2d2a24;
+    --paper: #fbf8f1;
+    --rust: #c14d2c;
+    --rust-deep: #8a3419;
+    --olive: #5a6b3a;
+    --mustard: #c89834;
+    --plum: #5d3a52;
+    --teal: #2d5d5e;
+    --line: rgba(26, 24, 20, 0.12);
+    --line-strong: rgba(26, 24, 20, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(26, 24, 20, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  ::selection { background: var(--ink); color: var(--cream); }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    background: rgba(245, 241, 232, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  nav .logo { font-weight: 600; }
+  nav .logo span { color: var(--rust); }
+
+  nav .meta { display: flex; gap: 32px; color: var(--ink-soft); }
+  nav .meta span:before { content: '· '; color: var(--line-strong); margin-right: 4px; }
+  nav .meta span:first-child:before { display: none; }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 40px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--line);
+    z-index: 0;
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--rust);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(56px, 8vw, 110px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--rust);
+  }
+  h1 .num {
+    font-feature-settings: 'ss01';
+    font-weight: 500;
+  }
+
+  .hero-desc {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 480px;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-stat {
+    flex: 1;
+    padding: 20px 0;
+    border-right: 1px solid var(--line);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+
+  /* ============ AUTHOR CREDIT ============ */
+  .author-credit {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .author-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+    border: 2px solid var(--rust);
+  }
+
+  .author-info { flex: 1; }
+
+  .author-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .author-label::before {
+    content: '';
+    width: 14px;
+    height: 1px;
+    background: var(--rust);
+  }
+
+  .author-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .author-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .author-bio {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .author-bio strong {
+    color: var(--rust);
+    font-weight: 500;
+  }
+
+  /* Hero right - tech stack visual */
+  .hero-right {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 110px;
+    gap: 12px;
+  }
+
+  .tech-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .tech-card:hover {
+    transform: translateY(-4px);
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .tech-card:hover .tech-num,
+  .tech-card:hover .tech-tag { color: var(--rust); }
+
+  .tech-card .tech-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--rust);
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+  .tech-card .tech-name {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .tech-card .tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    transition: color 0.3s;
+  }
+
+  .tech-card.featured {
+    background: var(--rust);
+    color: var(--cream);
+    grid-column: span 2;
+  }
+  .tech-card.featured:hover { background: var(--rust-deep); }
+  .tech-card.featured .tech-num { color: var(--cream); opacity: 0.6; }
+  .tech-card.featured .tech-tag { color: var(--cream); opacity: 0.7; }
+  .tech-card.featured .tech-name { font-size: 26px; font-style: italic; }
+
+  .tech-card.dark {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .tech-card.dark:hover { background: var(--ink-soft); }
+  .tech-card.dark .tech-num { color: var(--mustard); }
+  .tech-card.dark .tech-tag { color: var(--cream); opacity: 0.6; }
+
+  /* ============ TOOLS SECTION ============ */
+  .tools-section {
+    padding: 80px 40px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .tools-header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    margin-bottom: 50px;
+    align-items: end;
+  }
+
+  .tools-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+  }
+  .tools-header h2 em { font-style: italic; color: var(--rust); }
+
+  .tools-header p {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 480px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+  }
+
+  .tool-item {
+    border-right: 1px solid var(--line);
+    padding-right: 16px;
+    padding-bottom: 8px;
+  }
+  .tool-item:last-child { border-right: none; }
+
+  .tool-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--rust);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+
+  .tool-name {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .tool-purpose {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+
+  .tool-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .section {
+    padding: 100px 40px 80px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    margin-bottom: 60px;
+    align-items: end;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 32px;
+  }
+
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 140px;
+    font-weight: 300;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+  }
+  .section-num em {
+    font-style: italic;
+    color: var(--rust);
+    font-weight: 400;
+  }
+
+  .section-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  .section-desc {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 580px;
+  }
+
+  /* ============ DAY CARDS ============ */
+  .days-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .day-row {
+    display: grid;
+    grid-template-columns: 100px 200px 1fr 80px;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    transition: background 0.3s, padding 0.3s;
+    cursor: default;
+    position: relative;
+  }
+  .day-row:hover {
+    background: var(--paper);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .day-row:hover .day-arrow { transform: translateX(8px); color: var(--rust); }
+
+  .day-num {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .day-num .label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  .day-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .day-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+
+  .day-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    color: var(--line-strong);
+    transition: transform 0.3s, color 0.3s;
+    text-align: right;
+  }
+
+  /* ============ WEEK ACCENTS ============ */
+  .section.week-1 .section-num em { color: var(--rust); }
+  .section.week-2 { background: var(--cream-deep); }
+  .section.week-2 .section-num em { color: var(--olive); }
+  .section.week-2 .section-title em { color: var(--olive); }
+  .section.week-2 .day-row:hover .day-arrow { color: var(--olive); }
+  .section.week-2 .eyebrow::before { background: var(--olive); }
+  .section.week-2 .eyebrow { color: var(--olive); }
+
+  .section.week-3 .section-num em { color: var(--mustard); }
+  .section.week-3 .section-title em { color: var(--mustard); }
+  .section.week-3 .day-row:hover .day-arrow { color: var(--mustard); }
+  .section.week-3 .eyebrow { color: var(--mustard); }
+  .section.week-3 .eyebrow::before { background: var(--mustard); }
+
+  .section.week-4 { background: var(--ink); color: var(--cream); }
+  .section.week-4 .section-num { color: var(--cream); }
+  .section.week-4 .section-num em { color: var(--rust); }
+  .section.week-4 .section-title { color: var(--cream); }
+  .section.week-4 .section-title em { color: var(--rust); font-style: italic; }
+  .section.week-4 .section-desc { color: rgba(245, 241, 232, 0.7); }
+  .section.week-4 .section-meta { color: rgba(245, 241, 232, 0.6); }
+  .section.week-4 .section-header { border-color: rgba(245, 241, 232, 0.2); }
+  .section.week-4 .days-grid { border-color: rgba(245, 241, 232, 0.15); }
+  .section.week-4 .day-row { border-color: rgba(245, 241, 232, 0.15); }
+  .section.week-4 .day-row:hover { background: var(--ink-soft); }
+  .section.week-4 .day-num { color: var(--cream); }
+  .section.week-4 .day-num .label { color: rgba(245, 241, 232, 0.5); }
+  .section.week-4 .day-title { color: var(--cream); }
+  .section.week-4 .day-desc { color: rgba(245, 241, 232, 0.65); }
+  .section.week-4 .day-arrow { color: rgba(245, 241, 232, 0.3); }
+  .section.week-4 .eyebrow { color: var(--rust); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 80px 40px 40px;
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin-bottom: 60px;
+  }
+  .footer-quote em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--rust);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+
+  .footer-bottom .signature {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 24px;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  .reveal-1 { animation-delay: 0.1s; }
+  .reveal-2 { animation-delay: 0.25s; }
+  .reveal-3 { animation-delay: 0.4s; }
+  .reveal-4 { animation-delay: 0.55s; }
+  .reveal-5 { animation-delay: 0.7s; }
+  .reveal-6 { animation-delay: 0.85s; }
+
+  .observe {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .observe.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    nav .meta { display: none; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 100px 20px 60px;
+      gap: 40px;
+    }
+    .hero::before { display: none; }
+    .hero-right { height: 380px; }
+    .section { padding: 60px 20px; }
+    .tools-section { padding: 50px 20px; }
+    .tools-header {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .tools-header h2 { font-size: 36px; }
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 16px;
+    }
+    .tool-item {
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding-right: 0;
+      padding-bottom: 16px;
+    }
+    .tool-item:nth-last-child(-n+2) { border-bottom: none; }
+    .section-header {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .section-num { font-size: 90px; }
+    .section-title { font-size: 32px; }
+    .day-row {
+      grid-template-columns: 60px 1fr 40px;
+      gap: 16px;
+    }
+    .day-row .day-title-cell { grid-column: 2; }
+    .day-num { font-size: 28px; }
+    .day-title { font-size: 17px; }
+    .day-desc { display: none; }
+    footer { padding: 50px 20px 30px; }
+    .footer-bottom { flex-direction: column; gap: 24px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">DEV/<span>ROADMAP</span></div>
+  <div class="meta">
+    <span>30 days</span>
+    <span>10 tools</span>
+    <span>1 capstone</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow reveal reveal-1">A 30-day internship curriculum</div>
+    <h1 class="reveal reveal-2">
+      Frontend<br>
+      <em>to</em> backend,<br>
+      in <span class="num">30</span> days.
+    </h1>
+    <p class="hero-desc reveal reveal-3">
+      A focused, day-by-day path from your first <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">&lt;html&gt;</code> tag to a deployed full-stack application — covering the markup, the logic, the framework, and the server-side glue that holds it all together.
+    </p>
+    <div class="hero-stats reveal reveal-4">
+      <div class="hero-stat">
+        <div class="num">30</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">04</div>
+        <div class="label">Phases</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">10</div>
+        <div class="label">Tools</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">01</div>
+        <div class="label">Capstone</div>
+      </div>
+    </div>
+
+    <div class="author-credit reveal reveal-5">
+      <div class="author-avatar">RV</div>
+      <div class="author-info">
+        <div class="author-label">Course designed by</div>
+        <div class="author-name">Ritik Verma <em>— Software Developer</em></div>
+        <div class="author-bio"><strong>3+ years</strong> of experience building real-time solutions with HTML, CSS, JavaScript, React, Spring Boot, MySQL &amp; Liferay.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right reveal reveal-6">
+    <div class="tech-card dark">
+      <div class="tech-num">01</div>
+      <div>
+        <div class="tech-name">Git</div>
+        <div class="tech-tag">Version control</div>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-num">02</div>
+      <div>
+        <div class="tech-name">Postman</div>
+        <div class="tech-tag">API testing</div>
+      </div>
+    </div>
+    <div class="tech-card featured">
+      <div class="tech-num">03 / 04</div>
+      <div>
+        <div class="tech-name"><em>HTML</em> &amp; CSS</div>
+        <div class="tech-tag">Markup + styling</div>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-num">05</div>
+      <div>
+        <div class="tech-name">JavaScript</div>
+        <div class="tech-tag">Logic</div>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-num">06</div>
+      <div>
+        <div class="tech-name">Bootstrap</div>
+        <div class="tech-tag">UI library</div>
+      </div>
+    </div>
+    <div class="tech-card dark">
+      <div class="tech-num">07</div>
+      <div>
+        <div class="tech-name">React</div>
+        <div class="tech-tag">UI framework</div>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-num">08</div>
+      <div>
+        <div class="tech-name">Java</div>
+        <div class="tech-tag">Language</div>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-num">09</div>
+      <div>
+        <div class="tech-name">Spring Boot</div>
+        <div class="tech-tag">Backend / API</div>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-num">10</div>
+      <div>
+        <div class="tech-name">MySQL</div>
+        <div class="tech-tag">Database</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS SECTION -->
+<section class="tools-section">
+  <div class="tools-header">
+    <h2 class="observe">The <em>tools</em><br>of the trade.</h2>
+    <p class="observe">Languages and frameworks get the spotlight, but the tools below are what you'll actually open every single day. Treat them as muscle memory, not afterthoughts.</p>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-item observe">
+      <div class="tool-num">— 01</div>
+      <div class="tool-name">Git</div>
+      <div class="tool-purpose">Version control</div>
+      <div class="tool-desc">Track every change, branch fearlessly, and undo mistakes without panic. Learn init, add, commit, push, pull, branch, merge, and rebase.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 02</div>
+      <div class="tool-name">GitHub</div>
+      <div class="tool-purpose">Code hosting</div>
+      <div class="tool-desc">Where your code lives publicly. Repos, README files, pull requests, issues, and GitHub Pages — your portfolio's permanent home.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 03</div>
+      <div class="tool-name">Postman</div>
+      <div class="tool-purpose">API testing</div>
+      <div class="tool-desc">Hit every endpoint before your frontend ever does. Build collections, save environments, attach JWT tokens, debug responses.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 04</div>
+      <div class="tool-name">VS Code</div>
+      <div class="tool-purpose">Code editor</div>
+      <div class="tool-desc">Your daily workspace. Configure extensions, integrated terminal, Git integration, Prettier, ESLint, and live server.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 05</div>
+      <div class="tool-name">DevTools</div>
+      <div class="tool-purpose">Browser debugging</div>
+      <div class="tool-desc">Chrome's Elements, Console, Network, and Application tabs. Inspect requests, debug JavaScript, profile performance, simulate devices.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 06</div>
+      <div class="tool-name">npm</div>
+      <div class="tool-purpose">Package manager</div>
+      <div class="tool-desc">Install, update, and run JavaScript packages. Understand package.json, dependencies, scripts, and the node_modules folder.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 07</div>
+      <div class="tool-name">MySQL</div>
+      <div class="tool-purpose">Database</div>
+      <div class="tool-desc">A relational database. Write SQL queries, design schemas with Workbench, and connect from Spring Boot via JDBC.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 08</div>
+      <div class="tool-name">IntelliJ</div>
+      <div class="tool-purpose">Java IDE</div>
+      <div class="tool-desc">The serious Java IDE. Run Spring Boot apps, debug with breakpoints, refactor confidently, and use the database tool window.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 09</div>
+      <div class="tool-name">Maven</div>
+      <div class="tool-purpose">Build tool</div>
+      <div class="tool-desc">Manage Java dependencies via pom.xml. Understand the build lifecycle — compile, test, package, install — and Spring starters.</div>
+    </div>
+    <div class="tool-item observe">
+      <div class="tool-num">— 10</div>
+      <div class="tool-name">Vercel</div>
+      <div class="tool-purpose">Deployment</div>
+      <div class="tool-desc">One-click frontend deploys. Pair with Render or Railway for backend hosting. Push to main, see it live in seconds.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 1 -->
+<section class="section week-1">
+  <div class="section-header">
+    <div class="section-num observe">Week <em>01</em></div>
+    <div class="observe">
+      <div class="section-meta">Days 01 — 07 · Frontend foundations</div>
+      <h2 class="section-title">The <em>building blocks</em> every web page is made of.</h2>
+      <p class="section-desc">Markup, styling, layout, and a component library — by the end of the week you'll have a deployed portfolio site as proof.</p>
+    </div>
+  </div>
+
+  <div class="days-grid">
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>01</div>
+      <div class="day-title">Setup, Git basics &amp; HTML fundamentals</div>
+      <div class="day-desc">Install VS Code, Git, and a browser. Configure Git with your name and email. Learn the anatomy of an HTML page — DOCTYPE, head, body, semantic tags, headings, paragraphs, lists, links, and images. Run your first <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;background:rgba(193,77,44,0.08);padding:1px 5px;border-radius:3px;">git init</code> and <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;background:rgba(193,77,44,0.08);padding:1px 5px;border-radius:3px;">git commit</code>.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>02</div>
+      <div class="day-title">HTML forms, tables &amp; embedded media</div>
+      <div class="day-desc">Master input types, labels, select, textareas, validation attributes, table semantics, video/audio, and iframes. Build a registration form and a data table.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>03</div>
+      <div class="day-title">CSS basics — selectors, box model, color</div>
+      <div class="day-desc">Inline / internal / external CSS, selectors (class, id, attribute, pseudo), specificity, the box model, units (px, rem, em, %), and color systems.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>04</div>
+      <div class="day-title">Flexbox &amp; CSS Grid layouts</div>
+      <div class="day-desc">Flexbox for one-dimensional flow, CSS Grid for two-dimensional structure. Build a fully responsive landing page from a blank file.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>05</div>
+      <div class="day-title">Responsive design, media queries &amp; DevTools</div>
+      <div class="day-desc">Mobile-first approach, viewport meta tag, breakpoints, fluid typography with clamp(), CSS transitions and keyframe animations. Master Chrome DevTools — Elements, device toolbar, Network tab.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>06</div>
+      <div class="day-title">Bootstrap 5 — grid system &amp; components</div>
+      <div class="day-desc">Bootstrap CDN setup, the 12-column grid, containers, rows, breakpoints, and core components: buttons, cards, navbars, modals, forms, badges.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>07</div>
+      <div class="day-title">GitHub, deployment &amp; portfolio site</div>
+      <div class="day-desc">Combine HTML, CSS, and Bootstrap into a multi-page portfolio. Create a GitHub account, push your code with branches and pull requests, write a clean README, and deploy live via GitHub Pages or Netlify.</div>
+      <div class="day-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 2 -->
+<section class="section week-2">
+  <div class="section-header">
+    <div class="section-num observe">Week <em>02</em></div>
+    <div class="observe">
+      <div class="section-meta">Days 08 — 15 · JavaScript &amp; React</div>
+      <h2 class="section-title">From static pages to <em>interactive</em> applications.</h2>
+      <p class="section-desc">Vanilla JavaScript first, then a leap into component-based UI with React. By day 15, your app fetches real data from a real API.</p>
+    </div>
+  </div>
+
+  <div class="days-grid">
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>08</div>
+      <div class="day-title">JavaScript core — variables, types, operators</div>
+      <div class="day-desc">let / const / var, primitive vs reference types, template literals, type coercion, comparison operators, conditionals, and loops.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>09</div>
+      <div class="day-title">Functions, arrays &amp; objects</div>
+      <div class="day-desc">Function declarations vs expressions, arrow functions, rest/spread, array methods (map, filter, reduce), object literals, and destructuring.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>10</div>
+      <div class="day-title">DOM manipulation &amp; events</div>
+      <div class="day-desc">querySelector, modifying styles and attributes, creating and removing elements, event listeners, event bubbling, and form handling.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>11</div>
+      <div class="day-title">Async JavaScript — promises, async/await, fetch</div>
+      <div class="day-desc">The event loop, callbacks, promises, async/await, error handling with try/catch, and the Fetch API against a real public endpoint.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>12</div>
+      <div class="day-title">Node.js, npm, Vite &amp; React essentials</div>
+      <div class="day-desc">Install Node.js and npm, understand package.json and node_modules, spin up a Vite project, master JSX syntax, build functional components, pass props, and grasp the virtual DOM.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>13</div>
+      <div class="day-title">State, hooks &amp; event handling</div>
+      <div class="day-desc">useState for local state, useEffect for side effects, controlled forms, conditional rendering, list rendering with keys, and lifting state up.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>14</div>
+      <div class="day-title">React Router &amp; API integration</div>
+      <div class="day-desc">react-router-dom, routes and nested routes, Link and useNavigate, fetching with Axios in useEffect, and handling loading/error states.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>15</div>
+      <div class="day-title">Mini project — React todo or weather app</div>
+      <div class="day-desc">Apply hooks, components, and API calls in a real app. Style with Bootstrap or Tailwind, then deploy on Vercel or Netlify.</div>
+      <div class="day-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 3 -->
+<section class="section week-3">
+  <div class="section-header">
+    <div class="section-num observe">Week <em>03</em></div>
+    <div class="observe">
+      <div class="section-meta">Days 16 — 22 · Backend &amp; databases</div>
+      <h2 class="section-title">Java, Spring Boot, and <em>everything</em> behind the API.</h2>
+      <p class="section-desc">The heaviest week. Layered architecture, JPA, validation, exception handling, and JWT-secured endpoints — production patterns you'll see on day one of any backend job.</p>
+    </div>
+  </div>
+
+  <div class="days-grid">
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>16</div>
+      <div class="day-title">Java refresher &amp; OOP fundamentals</div>
+      <div class="day-desc">Java syntax, classes and objects, constructors, inheritance, polymorphism, abstraction, encapsulation, interfaces, collections, and exceptions.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>17</div>
+      <div class="day-title">Spring Boot setup, Maven &amp; IntelliJ / VS Code</div>
+      <div class="day-desc">Install JDK 17+, generate a project on start.spring.io, understand Maven (pom.xml, dependencies, lifecycle), the @SpringBootApplication entry point, and the layered architecture pattern.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>18</div>
+      <div class="day-title">REST APIs with Spring Web &amp; Postman</div>
+      <div class="day-desc">@RestController, @GetMapping / @PostMapping / @PutMapping / @DeleteMapping, @PathVariable, @RequestBody, ResponseEntity. Install Postman, build collections, and test every endpoint thoroughly.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>19</div>
+      <div class="day-title">MySQL, Workbench &amp; Spring Data JPA</div>
+      <div class="day-desc">Install MySQL Server and MySQL Workbench, write your first SQL (CREATE, INSERT, SELECT, JOIN), connect Spring Boot via JDBC, define @Entity classes, and run real CRUD via JpaRepository.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>20</div>
+      <div class="day-title">Service layer, DTOs &amp; validation</div>
+      <div class="day-desc">Move business logic into @Service classes, decouple API contracts with DTOs, and validate input with @Valid and Bean Validation annotations.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>21</div>
+      <div class="day-title">Exception handling &amp; relationships</div>
+      <div class="day-desc">Global @ControllerAdvice handlers, custom exceptions, and JPA relationships — @OneToMany, @ManyToOne, @ManyToMany with cascade and fetch types.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>22</div>
+      <div class="day-title">Spring Security &amp; JWT authentication</div>
+      <div class="day-desc">Configure Spring Security, BCrypt password encoding, login/register endpoints, JWT generation and validation, and role-based access control.</div>
+      <div class="day-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 4 -->
+<section class="section week-4">
+  <div class="section-header">
+    <div class="section-num observe">Week <em>04</em></div>
+    <div class="observe">
+      <div class="section-meta">Days 23 — 30 · Full stack integration</div>
+      <h2 class="section-title">The <em>capstone</em>. Where everything clicks together.</h2>
+      <p class="section-desc">Design, build, integrate, deploy, document. Walk away from day 30 with a live full-stack project on your GitHub — worth more than any certificate.</p>
+    </div>
+  </div>
+
+  <div class="days-grid">
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>23</div>
+      <div class="day-title">Project planning, schema &amp; Git workflow</div>
+      <div class="day-desc">Pick a capstone (task manager, blog, e-commerce). Design the MySQL schema with Workbench, define endpoints, sketch wireframes, set up two GitHub repos with proper README, .gitignore, and a feature-branch workflow.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>24</div>
+      <div class="day-title">Backend build — entities &amp; APIs</div>
+      <div class="day-desc">Create JPA entities, repositories, services, and REST controllers. Implement full CRUD and verify every endpoint with Postman before touching the UI.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>25</div>
+      <div class="day-title">Backend auth &amp; CORS configuration</div>
+      <div class="day-desc">Wire up JWT-based login and registration, secure protected routes, and configure CORS so the React dev server can talk to Spring Boot.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>26</div>
+      <div class="day-title">Frontend build — pages &amp; routing</div>
+      <div class="day-desc">Login, register, dashboard, list view, detail view — all with React Router. Style with Bootstrap and ensure mobile responsiveness.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>27</div>
+      <div class="day-title">Connect frontend to backend with Axios</div>
+      <div class="day-desc">Axios instance with base URL, JWT interceptors, token storage, protected routes, and real API calls wired to every CRUD page.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>28</div>
+      <div class="day-title">Testing, debugging &amp; polish</div>
+      <div class="day-desc">End-to-end manual testing, loading and error UI states, form validation messages, basic JUnit tests, and serious DevTools work.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>29</div>
+      <div class="day-title">Deployment — frontend &amp; backend</div>
+      <div class="day-desc">React build to Vercel or Netlify, Spring Boot JAR to Render or Railway, a free-tier database (Aiven, Railway), and environment variables wired up.</div>
+      <div class="day-arrow">→</div>
+    </div>
+    <div class="day-row observe">
+      <div class="day-num"><span class="label">Day</span>30</div>
+      <div class="day-title">Documentation, demo &amp; resume polish</div>
+      <div class="day-desc">A clear README, screenshots, the live link. A short demo video. GitHub and LinkedIn updated. Resume ready. Interviews next.</div>
+      <div class="day-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-quote observe">
+    Spend the first hours <em>learning</em>, the next hours <em>coding</em>, and the last hour pushing to GitHub. Consistency beats intensity — every single time.
+  </p>
+  <div class="footer-bottom">
+    <div>
+      <div class="signature">— Ritik Verma</div>
+    </div>
+    <div>
+      <div>30 days · 4 phases · 1 deployed app</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection observer for scroll reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.observe').forEach(el => observer.observe(el));
+
+  // Stagger day rows within each week
+  document.querySelectorAll('.section').forEach(section => {
+    const rows = section.querySelectorAll('.day-row.observe');
+    rows.forEach((row, i) => {
+      row.style.transitionDelay = `${i * 0.06}s`;
+    });
+  });
+</script>
+
+</body>
+</html>
