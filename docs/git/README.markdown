@@ -1,46 +1,175 @@
-# Beginner-Friendly Git Guide
+# Complete Beginner Git & GitHub Course
 
-## What is Git?
-Git is a version control system that helps developers:
-- Track code changes
-- Save project history
-- Work with teams
-- Restore old versions of files
+# Table of Contents
 
-Think of Git like a **save game system** for coding projects.
+1. What is Git?
+2. What is GitHub?
+3. Difference Between Git and GitHub
+4. Install Git
+5. Configure Git
+6. Create Your First Repository
+7. Understanding Git Workflow
+8. Git Status
+9. Adding Files
+10. Committing Changes
+11. Viewing History
+12. Branching
+13. Merging
+14. Clone Repository
+15. Pull Changes
+16. Push Changes
+17. GitHub Setup
+18. SSH Setup
+19. Undo Changes
+20. Git Reset
+21. Git Rebase
+22. Cherry Pick
+23. Git Stash
+24. Git Ignore
+25. Common Errors
+26. Complete Real Workflow
+27. Most Common Commands
+28. Best Practices
 
 ---
 
-# 1. Check if Git is Installed
+# 1. What is Git?
 
-Open Terminal and type:
+Git is a version control system.
+
+It helps developers:
+- Track code changes
+- Save project history
+- Collaborate with teams
+- Restore old versions
+
+Think of Git like a **save system for coding projects**.
+
+---
+
+# 2. What is GitHub?
+
+GitHub is a cloud platform where Git repositories are stored online.
+
+GitHub helps developers:
+- Store code online
+- Collaborate with teams
+- Share projects
+- Create pull requests
+- Backup projects
+
+Website:
+https://github.com
+
+---
+
+# 3. Difference Between Git and GitHub
+
+| Git | GitHub |
+|---|---|
+| Git is a version control system | GitHub is a cloud hosting platform |
+| Git tracks code locally | GitHub stores repositories online |
+| Git works offline | GitHub usually requires internet |
+| Git is installed on your machine | GitHub runs in browser/cloud |
+| Git manages project history | GitHub manages collaboration |
+| Git is a tool | GitHub is a service/platform |
+
+---
+
+# Simple Understanding
+
+## Git
+
+Git saves and tracks project changes locally.
+
+Example:
+
+```bash
+git add .
+git commit -m "Added login page"
+```
+
+---
+
+## GitHub
+
+GitHub stores your Git repository online.
+
+Example:
+
+```bash
+git push origin main
+```
+
+This uploads your code to GitHub.
+
+---
+
+# Real Life Analogy
+
+| Real Life Example | Git | GitHub |
+|---|---|---|
+| Writing notes | Notebook | Google Drive |
+| Save game progress | Save file | Cloud backup |
+| Project files | Local folder | Online backup |
+
+---
+
+# 4. Install Git
+
+## Windows
+
+1. Visit:
+   https://git-scm.com/downloads
+
+2. Download Git for Windows
+
+3. Run installer
+
+4. Keep clicking **Next**
+
+5. Finish installation
+
+Check installation:
 
 ```bash
 git --version
 ```
 
-You may also see:
+---
+
+## Linux (Ubuntu/Debian)
 
 ```bash
-g --version
+sudo apt update
+sudo apt install git
 ```
 
-### Why do both work?
-Because `g` is usually an alias (shortcut) for `git`.
-
-Example:
+Check:
 
 ```bash
-alias g='git'
+git --version
 ```
 
 ---
 
-# 2. Configure Git
+## macOS
 
-Git needs your name and email.
+```bash
+brew install git
+```
 
-Run:
+Check:
+
+```bash
+git --version
+```
+
+---
+
+# 5. Configure Git
+
+Set your username and email.
 
 ```bash
 git config --global user.name "Your Name"
@@ -54,7 +183,7 @@ git config --global user.name "Ritik Verma"
 git config --global user.email "ritik@gmail.com"
 ```
 
-Check settings:
+Check configuration:
 
 ```bash
 git config --list
@@ -62,9 +191,7 @@ git config --list
 
 ---
 
-# 3. Create Your First Repository
-
-A repository (repo) is your project folder managed by Git.
+# 6. Create Your First Repository
 
 ## Create Folder
 
@@ -72,7 +199,7 @@ A repository (repo) is your project folder managed by Git.
 mkdir my-first-repo
 ```
 
-## Go Inside Folder
+## Enter Folder
 
 ```bash
 cd my-first-repo
@@ -84,82 +211,87 @@ cd my-first-repo
 git init
 ```
 
-Now this folder is a Git repository.
+Now this folder is managed by Git.
 
 ---
 
-# 4. Check Repository Status
+# 7. Understanding Git Workflow
+
+Git workflow:
+
+```text
+Working Directory -> Staging Area -> Commit -> GitHub
+```
+
+### Working Directory
+Where files are created or edited.
+
+### Staging Area
+Files ready to commit.
+
+### Commit
+Saved snapshot/version.
+
+### GitHub
+Online storage and collaboration.
+
+---
+
+# 8. Git Status
+
+Check repository status:
 
 ```bash
 git status
 ```
 
-Shortcut:
-
-```bash
-g st
-```
-
----
-
-# 5. Create Files
-
-```bash
-echo "Hello" > abc.txt
-```
-
-Check status:
-
-```bash
-git status
-```
-
-You will see:
-- `abc.txt` is untracked
+Shows:
+- Modified files
+- New files
+- Deleted files
+- Staged files
 
 ---
 
-# 6. Add Files to Git
+# 9. Adding Files
+
+## Add Single File
 
 ```bash
 git add abc.txt
 ```
 
-Now Git is ready to save this file.
-
----
-
-# 7. Make Your First Commit
-
-A commit = snapshot/save point.
+## Add All Files
 
 ```bash
-git commit -m "My first commit"
-```
-
-Shortcut:
-
-```bash
-g ci -m "My first commit"
+git add .
 ```
 
 ---
 
-# 8. View Commit History
+# 10. Commit Changes
+
+Commit saves changes permanently.
+
+```bash
+git commit -m "Added login page"
+```
+
+---
+
+# 11. View Commit History
 
 ```bash
 git log
 ```
 
-You will see:
-- commit ID
-- author
-- date
-- message
+Short version:
 
----
+```bash
+git log --oneline
+```
 
-# 9. See Changes in a Commit
+View commit details:
 
 ```bash
 git show <commit-id>
@@ -168,110 +300,81 @@ git show <commit-id>
 Example:
 
 ```bash
-git show ad7fc9e
+git show a1b2c3
 ```
 
 ---
 
-# 10. Create Branches
-
-Branches let you work separately without affecting main code.
-
-## Create Branch
+# 12. Create Files
 
 ```bash
-git branch feature-1
+echo "Hello World" > abc.txt
 ```
 
-Shortcut:
+Check status:
 
 ```bash
-g br feature-1
-```
-
-## Switch Branch
-
-```bash
-git checkout feature-1
-```
-
-Shortcut:
-
-```bash
-g co feature-1
-```
-
----
-
-# 11. Check All Branches
-
-```bash
-git branch
-```
-
-Current branch has `*`.
-
-Example:
-
-```bash
-* master
-  feature-1
-```
-
----
-
-# 12. Add Changes in a Branch
-
-Create file:
-
-```bash
-echo "New feature" > feature.txt
+git status
 ```
 
 Add and commit:
 
 ```bash
-git add feature.txt
-git commit -m "Added feature file"
+git add .
+git commit -m "Created abc.txt"
 ```
 
 ---
 
-# 13. Merge Branches
+# 13. Branching
 
-Go back to master:
+Branches allow separate development.
+
+## Create Branch
+
+```bash
+git branch feature-login
+```
+
+## View Branches
+
+```bash
+git branch
+```
+
+## Switch Branch
+
+```bash
+git checkout feature-login
+```
+
+## Create + Switch Together
+
+```bash
+git checkout -b feature-dashboard
+```
+
+---
+
+# 14. Merge Branches
+
+Go to master/main branch:
 
 ```bash
 git checkout master
 ```
 
-Merge branch:
+Merge another branch:
 
 ```bash
-git merge feature-1
+git merge feature-login
 ```
-
-Now master has changes from feature-1.
 
 ---
 
-# 14. Cherry Pick
+# 15. Clone Repository
 
-Cherry-pick copies ONE commit from another branch.
-
-```bash
-git cherry-pick <commit-id>
-```
-
-Useful when:
-- you want only one change
-- not the whole branch
-
----
-
-# 15. Clone a Repository
-
-Copy a GitHub project to your computer.
+Copy repository from GitHub.
 
 ```bash
 git clone <repository-url>
@@ -280,49 +383,66 @@ git clone <repository-url>
 Example:
 
 ```bash
-git clone git@github.com:username/project.git
+git clone https://github.com/username/project.git
 ```
 
 ---
 
 # 16. Pull Latest Changes
 
+Download latest changes from GitHub.
+
 ```bash
 git pull
 ```
 
-Downloads latest code from GitHub.
-
 ---
 
-# 17. Push Your Changes
+# 17. Push Changes
+
+Upload commits to GitHub.
 
 ```bash
 git push
 ```
 
-Uploads your commits to GitHub.
+First push:
+
+```bash
+git push -u origin master
+```
 
 ---
 
-# 18. GitHub Personal Access Token (PAT)
+# 18. Create GitHub Account
 
-GitHub no longer allows password authentication in many cases.
+1. Open:
+   https://github.com
+
+2. Sign up
+
+3. Verify email
+
+4. Create repositories
+
+---
+
+# 19. Personal Access Token (PAT)
+
+GitHub may ask for token instead of password.
 
 Steps:
-1. Go to GitHub Settings
+1. GitHub Settings
 2. Developer Settings
 3. Personal Access Tokens
 4. Generate Token
 5. Copy token safely
 
-Use it when Git asks for password.
-
 ---
 
-# 19. SSH Key Setup (Recommended)
+# 20. SSH Setup
 
-SSH allows password-free GitHub access.
+SSH avoids entering password repeatedly.
 
 ## Generate SSH Key
 
@@ -330,7 +450,9 @@ SSH allows password-free GitHub access.
 ssh-keygen
 ```
 
-## Copy Public Key
+Press Enter multiple times.
+
+## View Public Key
 
 ```bash
 cat ~/.ssh/id_rsa.pub
@@ -338,39 +460,63 @@ cat ~/.ssh/id_rsa.pub
 
 ## Add Key to GitHub
 
-GitHub → Settings → SSH and GPG Keys → New SSH Key
+1. GitHub Settings
+2. SSH and GPG Keys
+3. New SSH Key
+4. Paste key
 
-Paste the copied key.
-
-Now:
-
-```bash
-git pull
-```
-
-works without password.
+Now GitHub access works without password.
 
 ---
 
-# 20. Reset Changes
+# 21. Undo Changes
 
-## Remove All Local Changes
+## Restore File
 
 ```bash
-git reset --hard
+git restore abc.txt
 ```
-
-⚠️ Warning:
-This deletes uncommitted changes.
 
 ---
 
-# 21. Interactive Rebase (Advanced)
+## Unstage File
+
+```bash
+git restore --staged abc.txt
+```
+
+---
+
+# 22. Git Reset
+
+## Soft Reset
+
+Keeps file changes.
+
+```bash
+git reset --soft HEAD~1
+```
+
+---
+
+## Hard Reset
+
+Deletes changes permanently.
+
+```bash
+git reset --hard HEAD~1
+```
+
+⚠️ Dangerous command.
+
+---
+
+# 23. Git Rebase
 
 Used to:
-- edit commits
-- remove commits
-- rename commits
+- Clean commit history
+- Edit commits
+- Remove commits
 
 Example:
 
@@ -378,11 +524,190 @@ Example:
 git rebase -i HEAD~3
 ```
 
-This opens editor for last 3 commits.
+---
+
+# 24. Cherry Pick
+
+Copy one commit from another branch.
+
+```bash
+git cherry-pick <commit-id>
+```
 
 ---
 
-# 22. Most Common Git Commands
+# 25. Git Stash
+
+Temporarily save unfinished work.
+
+## Save Changes
+
+```bash
+git stash
+```
+
+## View Stashes
+
+```bash
+git stash list
+```
+
+## Restore Stash
+
+```bash
+git stash pop
+```
+
+---
+
+# 26. Git Ignore
+
+Ignore files/folders.
+
+Create `.gitignore`
+
+Example:
+
+```text
+node_modules/
+.env
+dist/
+```
+
+---
+
+# 27. Common Git Errors
+
+## Error: Permission denied
+
+Fix:
+- Configure SSH
+- Add SSH key to GitHub
+
+---
+
+## Error: Merge conflict
+
+Happens when same file changed differently.
+
+Fix:
+1. Open conflicted file
+2. Edit manually
+3. Add file
+4. Commit changes
+
+---
+
+## Error: Repository not found
+
+Fix:
+- Check repository URL
+- Check GitHub permissions
+
+---
+
+# 28. Complete Real Workflow
+
+## First Time Setup
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+```
+
+---
+
+## Clone Repository
+
+```bash
+git clone https://github.com/username/project.git
+```
+
+---
+
+## Enter Project
+
+```bash
+cd project
+```
+
+---
+
+## Create Branch
+
+```bash
+git checkout -b feature-login
+```
+
+---
+
+## Make Changes
+
+Edit project files.
+
+---
+
+## Check Status
+
+```bash
+git status
+```
+
+---
+
+## Add Changes
+
+```bash
+git add .
+```
+
+---
+
+## Commit Changes
+
+```bash
+git commit -m "Added login feature"
+```
+
+---
+
+## Pull Latest Changes Before Push
+
+If using `main` branch:
+
+```bash
+git pull origin main
+```
+
+If using `master` branch:
+
+```bash
+git pull origin master
+```
+
+---
+
+## Push Changes
+
+```bash
+git push origin feature-login
+```
+
+---
+
+# 29. Simple Daily Git Workflow
+
+```bash
+git status
+git add .
+git commit -m "Your message"
+git pull origin main
+git push origin main
+```
+
+---
+
+# 30. Most Common Git Commands
 
 | Task | Command |
 |---|---|
@@ -390,29 +715,24 @@ This opens editor for last 3 commits.
 | Initialize repo | `git init` |
 | Check status | `git status` |
 | Add file | `git add file.txt` |
+| Add all files | `git add .` |
 | Commit | `git commit -m "message"` |
-| View history | `git log` |
+| View logs | `git log` |
+| Short logs | `git log --oneline` |
 | Create branch | `git branch branch-name` |
 | Switch branch | `git checkout branch-name` |
+| Create + switch branch | `git checkout -b branch-name` |
 | Merge branch | `git merge branch-name` |
 | Clone repo | `git clone url` |
-| Pull changes | `git pull` |
+| Pull latest code | `git pull` |
 | Push changes | `git push` |
+| Reset changes | `git reset --hard` |
+| Save temporary work | `git stash` |
+| Restore stash | `git stash pop` |
 
 ---
 
-# Simple Git Workflow
-
-```bash
-git status
-git add .
-git commit -m "Your message"
-git push
-```
-
----
-
-# Easy Understanding of Git Concepts
+# 31. Important Git Concepts
 
 | Concept | Meaning |
 |---|---|
@@ -420,21 +740,36 @@ git push
 | Commit | Save point |
 | Branch | Separate workspace |
 | Merge | Combine branches |
-| Clone | Copy project |
+| Clone | Copy repository |
 | Pull | Download latest code |
 | Push | Upload code |
-| Cherry-pick | Copy one commit |
 | Rebase | Rewrite history |
+| Cherry-pick | Copy one commit |
+| Stash | Temporary save |
 
 ---
 
-# Recommended Beginner Practice
+# 32. Best Practices
 
-Create a practice repo and try:
-1. Create files
-2. Commit changes
-3. Create branches
-4. Merge branches
-5. Push to GitHub
+- Commit small changes
+- Write meaningful commit messages
+- Pull before push
+- Use branches for features
+- Never commit passwords or secrets
+- Use `.gitignore`
 
-This is the fastest way to learn Git.
+---
+
+# 33. Recommended Practice
+
+Practice these daily:
+1. Create repository
+2. Create files
+3. Commit changes
+4. Create branches
+5. Merge branches
+6. Push to GitHub
+7. Pull latest changes
+8. Resolve merge conflicts
+
+This is the fastest way to master Git.
